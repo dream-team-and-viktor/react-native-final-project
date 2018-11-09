@@ -5,6 +5,7 @@ Backend location: AWS Lambda
 Frontend (Intent Shema): JSON
 Invocation: health voice
 
+
 # Handlers
 ## Adding new handlers:
 To add new handler, import it to the “index.js” file. Note: handlers name and file name should be the same.
