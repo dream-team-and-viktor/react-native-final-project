@@ -103,8 +103,10 @@ You also need to request “alexa-sdk”.
         - DontKnowIntent:
             - i don't know
             - don't know
-            - 
-    - Slot Type:
+            - i don't know that one
+            - dunno
+            - skip
+    - Slot Type: None
 
 # Functions
 
