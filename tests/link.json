@@ -1,0 +1,92 @@
+{
+  "responses": [
+    {
+      "webDetection": {
+        "webEntities": [
+          {
+            "entityId": "/m/03nxz7",
+            "score": 1.120581,
+            "description": "Robson Street"
+          },
+          {
+            "entityId": "/m/07clx",
+            "score": 0.85785,
+            "description": "Tea"
+          },
+          {
+            "entityId": "/m/0179q0",
+            "score": 0.73245,
+            "description": "Richmond"
+          },
+          {
+            "entityId": "/m/04yjfqy",
+            "score": 0.7171065,
+            "description": "Denman Street"
+          },
+          {
+            "entityId": "/m/0c13_w",
+            "score": 0.714384,
+            "description": "Downtown Vancouver"
+          }
+        ],
+        "fullMatchingImages": [
+          {
+            "url": "https://dinehere.ca/sites/default/files/imagecache/restaurant_detail_full/sites/default/files/r_images/138383.jpg"
+          }
+        ],
+        "pagesWithMatchingImages": [
+          {
+            "url": "https://byrdbarnhouse.com/starbucks-coffee-vancouver-locations-pictures-robson.html",
+            "pageTitle": "\u003cb\u003eStarbucks\u003c/b\u003e Coffee Vancouver Locations Pictures \u003cb\u003eRobson\u003c/b\u003e",
+            "fullMatchingImages": [
+              {
+                "url": "http://dinehere.ca/sites/default/files/imagecache/restaurant_detail_full/sites/default/files/r_images/138383.jpg"
+              }
+            ]
+          },
+          {
+            "url": "https://dinehere.ca/vancouver/starbucks-times-square",
+            "pageTitle": "\u003cb\u003eStarbucks\u003c/b\u003e (Times Square) | Vancouver - Dine Here",
+            "fullMatchingImages": [
+              {
+                "url": "https://dinehere.ca/sites/default/files/imagecache/restaurant_detail_full/sites/default/files/r_images/138383.jpg"
+              }
+            ]
+          },
+          {
+            "url": "http://hekeng.pw/gluten-free-dining-vancouver",
+            "pageTitle": "Gluten Free Dining Vancouver.Try These Richmond Restaurants ...",
+            "fullMatchingImages": [
+              {
+                "url": "https://dinehere.ca/sites/default/files/imagecache/restaurant_detail_full/sites/default/files/r_images/138383.jpg"
+              }
+            ]
+          }
+        ],
+        "visuallySimilarImages": [
+          {
+            "url": "https://media-cdn.tripadvisor.com/media/photo-s/0b/78/20/d5/of-course-there-s-always.jpg"
+          },
+          {
+            "url": "https://form.ca/wp-content/uploads/2017/06/788_Robson_Street_2.jpg"
+          },
+          {
+            "url": "http://s3.amazonaws.com/mrp-listings/8/8/1/77887188/fa9e0e1cf1f1d410b786609ecd1c2e8d.jpeg"
+          },
+          {
+            "url": "https://foodgressing.com/wp-content/uploads/2015/03/Starbucks-Davie-Thurlow-Vancouver.jpg"
+          },
+          {
+            "url": "http://www.ourbc.com/discover_bc/coffee_shops/starbucks/vancouver/robson_01_640.jpg"
+          }
+        ],
+        "bestGuessLabels": [
+          {
+            "label": "starbucks robson",
+            "languageCode": "en"
+          }
+        ]
+      }
+    }
+  ]
+}

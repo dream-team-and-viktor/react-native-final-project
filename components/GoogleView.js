@@ -11,6 +11,10 @@ export default class GoogleView extends Component {
     };
   }
 
+  componentWillMount() {
+    this._start();
+  }
+
   askPermissionsAsync = async () => {
     await Permissions.askAsync(Permissions.CAMERA);
     await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -45,7 +49,6 @@ export default class GoogleView extends Component {
               type: "LOGO_DETECTION",
               maxResults: 5
             },
-
             {
               type: "WEB_DETECTION",
               maxResults: 5
@@ -54,6 +57,7 @@ export default class GoogleView extends Component {
         }
       ]
     };
+
     const response = await fetch(
       "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCyzIDcYNL4BJKjJQdSe-BvmauPVfSMFkY",
       {
@@ -66,13 +70,15 @@ export default class GoogleView extends Component {
       }
     );
     const parsed = await response.json();
-    console.log(parsed);
+    this.props.navigation.navigate("Display", {
+      parsed
+    });
   };
 
   render() {
     return (
       <View>
-        <Button title="Take a pictute" onPress={this._start} />
+        <Button title="Take a Picture" onPress={this._start} />
         <Image
           source={{
             uri: this.state.abase64

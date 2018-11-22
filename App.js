@@ -3,6 +3,7 @@ import { createStackNavigator } from "react-navigation";
 
 import HomeScreen from "./components/HomeScreen";
 import GoogleView from "./components/GoogleView";
+import DisplayScreen from "./components/DisplayScreen";
 
 const RootStack = createStackNavigator(
   {
@@ -11,6 +12,9 @@ const RootStack = createStackNavigator(
     },
     GoogleView: {
       screen: GoogleView
+    },
+    Display: {
+      screen: DisplayScreen
     }
   },
   {
