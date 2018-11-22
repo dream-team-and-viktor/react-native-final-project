@@ -1,46 +1,29 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import {createStackNavigator} from 'react-navigation';
-//import org.reactnative.camera.RNCameraPackage;
+import React from "react";
+import { createStackNavigator } from "react-navigation";
 
-import HomeScreen from './components/HomeScreen'
-// import Camera from './components/Camera'
-// import CameraComponent from './components/CameraComponent'
-import GoogleView from './components/GoogleView'
-//So, to install it you need to "npm install react-native-camera --save && react-native link".
-//But it didn't work for me and gave me an error.
+import HomeScreen from "./components/HomeScreen";
+import GoogleView from "./components/GoogleView";
+import DisplayScreen from "./components/DisplayScreen";
 
-const RootStack = createStackNavigator({
-  Home: {
-    screen: HomeScreen
+const RootStack = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen
+    },
+    GoogleView: {
+      screen: GoogleView
+    },
+    Display: {
+      screen: DisplayScreen
+    }
   },
-  // Camera: {
-  //   screen: Camera
-  // },
-  GoogleView: {
-    screen: GoogleView
+  {
+    initialRouteName: "Home"
   }
-  //,
-  // CameraComponent: {
-  //   screen: CameraComponent
-  // }
-},
-{
-  initialRouteName: 'Home',
-}
 );
 
 export default class App extends React.Component {
   render() {
-    return <RootStack/>;
+    return <RootStack />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
