@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Camera, Permissions } from "expo";
 
 export default class CameraScreen extends React.Component {
@@ -13,6 +13,13 @@ export default class CameraScreen extends React.Component {
     this.setState({ hasCameraPermission: status === "granted" });
   }
 
+  snap = async () => {
+    if (this.camera) {
+      const photo = await this.camera.takePictureAsync();
+      console.log(photo);
+    }
+  };
+
   render() {
     const { hasCameraPermission, type } = this.state;
     if (hasCameraPermission === null) {
@@ -23,20 +30,16 @@ export default class CameraScreen extends React.Component {
     }
     return (
       <View style={{ flex: 1 }}>
-        <Camera style={{ flex: 1 }} type={type}>
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: "transparent",
-              flexDirection: "row"
-            }}
-          >
+        <Camera
+          style={{ flex: 1 }}
+          type={type}
+          ref={ref => {
+            this.camera = ref;
+          }}
+        >
+          <View style={styles.container}>
             <TouchableOpacity
-              style={{
-                flex: 0.1,
-                alignSelf: "flex-end",
-                alignItems: "center"
-              }}
+              style={styles.buttonStyle}
               onPress={() => {
                 this.setState({
                   type:
@@ -46,15 +49,7 @@ export default class CameraScreen extends React.Component {
                 });
               }}
             >
-              <Text
-                style={{
-                  fontSize: 18,
-                  marginBottom: 10,
-                  color: "white"
-                }}
-              >
-              {" "}Flip{" "}
-              </Text>
+              <Text style={styles.textFlip}> Flip </Text>
             </TouchableOpacity>
           </View>
         </Camera>
@@ -66,8 +61,17 @@ export default class CameraScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: "transparent",
+    flexDirection: "row"
+  },
+  buttonStyle: {
+    flex: 0.1,
+    alignSelf: "flex-end",
+    alignItems: "center"
+  },
+  textFlip: {
+    fontSize: 18,
+    marginBottom: 10,
+    color: "white"
   }
 });
