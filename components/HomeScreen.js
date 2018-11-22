@@ -6,7 +6,6 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text>This is home page</Text>
-
         <Button
           title="GoogleView"
           onPress={() => {

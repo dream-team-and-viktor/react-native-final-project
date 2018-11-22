@@ -68,8 +68,9 @@ export default class GoogleView extends Component {
         },
         body: JSON.stringify(body)
       }
-    );
+    );    
     const parsed = await response.json();
+    console.log(parsed);
     this.props.navigation.navigate("Display", {
       parsed
     });
