@@ -299,8 +299,8 @@ export default class App extends React.Component {
               ,"maxResults":5
             },*/
             {
-              "type":"LABEL_DETECTION"
-              ,"maxResults":5
+              "type":"LOGO_DETECTION",
+              "maxResults":1
             },
             {
               "type":"TEXT_DETECTION"

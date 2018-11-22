@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default class Camera extends React.Component {
-<<<<<<< HEAD
   constructor() {
     super();
     this.state = {
@@ -51,8 +50,6 @@ export default class Camera extends React.Component {
     .then((responseData) => { console.log("response: " + responseData); })
     .catch((err) => { console.log(err); });
   }
-=======
->>>>>>> aa5b534203e8d1712ff694ab567c6a0eadf0d216
   render() {
     return (
       <View style={styles.container}>
@@ -63,10 +60,7 @@ export default class Camera extends React.Component {
         <Button title="Take a picture" onPress={() => {
           this.props.navigation.navigate('Home')
         }}/>
-<<<<<<< HEAD
         <Button title="Check the pictute" onPress={  }}
-=======
->>>>>>> aa5b534203e8d1712ff694ab567c6a0eadf0d216
       </View>
     );
   }

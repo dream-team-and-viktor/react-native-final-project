@@ -42,14 +42,22 @@ export default class GoogleView extends Component {
       content: this.state.abase64,
       },
       features:[
+        // {
+        //   "type":"LANDMARK_DETECTION"
+        //   ,"maxResults":5
+        // },
+        // {
+        //   "type":"LABEL_DETECTION"
+        //   ,"maxResults":5
+        // },
         {
-          "type":"LANDMARK_DETECTION"
-          ,"maxResults":5
-        },            
-        {
-          "type":"DOCUMENT_TEXT_DETECTION"
+          "type":"LOGO_DETECTION"
           ,"maxResults":5
         },
+        // {
+        //   "type":"DOCUMENT_TEXT_DETECTION"
+        //   ,"maxResults":5
+        // },
         {
           "type":"WEB_DETECTION"
           ,"maxResults":5
@@ -58,11 +66,27 @@ export default class GoogleView extends Component {
     },
   ],
 };
+    const response = await fetch("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCyzIDcYNL4BJKjJQdSe-BvmauPVfSMFkY", {
+      method: 'POST',             
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    const parsed = await response.json();
+    console.log(parsed);
 }
 render() {
 	return (
 		<View>
 			<Button title="Take a pictute" onPress={this._start}/>
+			<Image source={{
+				uri: this.state.abase64
+			}} style={{
+				width: 200,
+				height:200
+			}} />
 		</View>
 		);
 }
