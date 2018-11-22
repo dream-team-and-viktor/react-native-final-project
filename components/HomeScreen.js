@@ -6,8 +6,9 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text>This is home page</Text>
-        <Button title="Take a picture" onPress={() => {
-          this.props.navigation.navigate('Camera')
+        
+        <Button title="GoogleView" onPress={() => {
+          this.props.navigation.navigate('GoogleView')
         }}/>
       </View>
     );
