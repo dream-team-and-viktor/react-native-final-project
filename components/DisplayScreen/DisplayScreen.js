@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { View, Text, Image, SectionList } from "react-native";
-import starbucks from "../tests/starbucks.json";
+import starbucks from "../../tests/starbucks.json";
 
 export default class DisplayScreen extends Component {
   constructor(props) {
     super(props);
-    const theResponse = this.props.navigation.getParam("parsed", null);
+    const theResponse = this.props.navigation.getParam("result", null);
     const slots = theResponse.responses[0].webDetection;
     this.state = {
       slots,
