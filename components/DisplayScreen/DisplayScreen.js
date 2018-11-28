@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { View, Text, Image, SectionList } from "react-native";
-import starbucks from "../../tests/starbucks.json";
 
 export default class DisplayScreen extends Component {
   constructor(props) {
