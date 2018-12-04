@@ -13,7 +13,7 @@ class GoogleView {
                     },
                     features: [
                       {
-                        type: "LOGO_DETECTION",
+                        type: "LANDMARK_DETECTION",
                         maxResults: 5
                       },
                       {
