@@ -8,7 +8,10 @@ import RelatedImagesScreen from "./components/RelatedImagesScreen/RelatedImagesS
 const RootStack = createStackNavigator(
   {
     Home: {
-      screen: HomeScreen
+      screen: HomeScreen,
+      navigationOptions: () => ({
+        header: null,
+      })
     },
     Display: {
       screen: DisplayScreen

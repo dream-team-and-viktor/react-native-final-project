@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { Image, View, Button, TouchableNativeFeedback } from "react-native";
 import { ImagePicker, Permissions } from "expo";
 
-import { GoogleView } from '../../models/GoogleView'; 
+import { GoogleView } from '../../models/GoogleView';
+import HomeScreenStyle from './HomeScreenStyle';
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -71,8 +72,45 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>This is home page</Text>
+      <View style={HomeScreenStyle.container}>
+        <Image
+          style={HomeScreenStyle.background}
+          source={require('../../assets/background.png')}
+          resizeMode='cover'
+        />
+        <TouchableNativeFeedback
+          style={HomeScreenStyle.startButtonWrapper}
+          onPress={this.takeImage}
+        >
+          <View
+            style={HomeScreenStyle.startButtonWrapper}
+            elevation={3}
+          >
+            <Image
+              style={HomeScreenStyle.startButton}
+              source={require('../../assets/photo-camera.png')}
+              resizeMode='cover'
+            />
+          </View>
+        </TouchableNativeFeedback>
+        <TouchableNativeFeedback
+          style={HomeScreenStyle.startButtonWrapper}
+          onPress={this.pickImage}
+        >
+          <View
+            style={HomeScreenStyle.startButtonWrapper}
+            elevation={3}
+          >
+            <Image
+              style={HomeScreenStyle.startButton}
+              source={require('../../assets/gallery.png')}
+              resizeMode='cover'
+            />
+          </View>
+        </TouchableNativeFeedback>
+        {/* <Button
+          title="Get started"
+        ></Button>
         <Button
           title="Take a Picture"
           onPress={this.takeImage}
@@ -80,17 +118,8 @@ export default class HomeScreen extends React.Component {
         <Button
           title="Pick an image from camera roll"
           onPress={this.pickImage}
-        />
+        /> */}
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
