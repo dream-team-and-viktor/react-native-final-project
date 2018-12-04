@@ -13,7 +13,7 @@ export default class HomeScreen extends React.Component {
     this.state = {
       currentImage: {
         imageURI: null,
-        imageBase64: null
+        imageBase64: null,
       },
       googleViewResult: null,
       loading: false
@@ -27,6 +27,7 @@ export default class HomeScreen extends React.Component {
   askPermissionsAsync = async () => {
     await Permissions.askAsync(Permissions.CAMERA);
     await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    await Permissions.askAsync(Permissions.LOCATION);
   };
 
   fetchGoogleViewData = async () => {
@@ -49,6 +50,17 @@ export default class HomeScreen extends React.Component {
       })
     }
   };
+
+  goToMapScreen = async () => {
+    const { navigation } = this.props;
+    const { location, locationName, regionPhone, regionPicture } = this.state;
+    navigation.navigate("MapScreen", {
+      location,
+      locationName,
+      regionPhone,
+      regionPicture
+    })
+  }
 
   takeImage = async () => {
     let { cancelled, uri, base64 } = await ImagePicker.launchCameraAsync({

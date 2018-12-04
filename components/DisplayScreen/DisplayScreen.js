@@ -14,8 +14,8 @@ export default class DisplayScreen extends Component {
 
   componentWillMount() {
     this.getVisuallySimilarImages();
-    console.log();
-    console.log(this.state.similarImages);
+    // console.log();
+    // console.log(this.state.similarImages);
   }
 
   getVisuallySimilarImages = () => {
