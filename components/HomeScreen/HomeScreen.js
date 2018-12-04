@@ -1,9 +1,11 @@
 import React from "react";
-import { Image, View, Button, TouchableNativeFeedback } from "react-native";
+import { Image, View, Button, TouchableNativeFeedback, Modal } from "react-native";
 import { ImagePicker, Permissions } from "expo";
 
 import { GoogleView } from '../../models/GoogleView';
 import HomeScreenStyle from './HomeScreenStyle';
+
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -13,7 +15,8 @@ export default class HomeScreen extends React.Component {
         imageURI: null,
         imageBase64: null
       },
-      googleViewResult: null
+      googleViewResult: null,
+      loading: false
     };
   }
 
@@ -30,12 +33,19 @@ export default class HomeScreen extends React.Component {
     let googleView = new GoogleView();
     if (this.state.currentImage.imageBase64) {
       console.log(this.state.currentImage.base64)
+      this.setState({
+        loading: true
+      })
       googleView.fetchGoogleViewData(this.state.currentImage.imageBase64)
       .then((result) => {
         console.log(result)
-        this.props.navigation.navigate("RelatedImages", {
-          result
-        });
+        this.setState({
+          loading: false
+        }, () => {
+          this.props.navigation.navigate("RelatedImages", {
+            result
+          });
+        })
       })
     }
   };
@@ -78,6 +88,18 @@ export default class HomeScreen extends React.Component {
           source={require('../../assets/background.png')}
           resizeMode='cover'
         />
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={this.state.loading}
+          onRequestClose={() => {
+            this.setState({
+              loading: false,
+            })
+          }}
+        >
+          <LoadingScreen/>
+        </Modal>
         <TouchableNativeFeedback
           style={HomeScreenStyle.startButtonWrapper}
           onPress={this.takeImage}
@@ -108,17 +130,6 @@ export default class HomeScreen extends React.Component {
             />
           </View>
         </TouchableNativeFeedback>
-        {/* <Button
-          title="Get started"
-        ></Button>
-        <Button
-          title="Take a Picture"
-          onPress={this.takeImage}
-        />
-        <Button
-          title="Pick an image from camera roll"
-          onPress={this.pickImage}
-        /> */}
       </View>
     );
   }
