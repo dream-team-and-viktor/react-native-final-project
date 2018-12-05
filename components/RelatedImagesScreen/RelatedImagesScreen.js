@@ -18,8 +18,6 @@ export default class RelatedImagesScreen extends Component {
         ? this.googleViewResult.responses[0].landmarkAnnotations[0]
         : null
 
-        console.log();
-
         this.state = {
             googleViewResult: this.googleViewResult,
             imageList: this.googleViewResult.responses[0].webDetection.visuallySimilarImages,
@@ -38,6 +36,7 @@ export default class RelatedImagesScreen extends Component {
         });
         this.setModalVisible(true);
     }
+
 
     renderItem = ({item}) => {
         return(

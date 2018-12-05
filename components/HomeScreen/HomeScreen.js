@@ -33,13 +33,13 @@ export default class HomeScreen extends React.Component {
   fetchGoogleViewData = async () => {
     let googleView = new GoogleView();
     if (this.state.currentImage.imageBase64) {
-      console.log(this.state.currentImage.base64)
+      // console.log(this.state.currentImage.base64)
       this.setState({
         loading: true
       })
       googleView.fetchGoogleViewData(this.state.currentImage.imageBase64)
       .then((result) => {
-        console.log(result)
+        // console.log(result)
         this.setState({
           loading: false
         }, () => {
