@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import { getDistance } from 'geolib';
 import { Location } from 'expo';
 import mapstyle from './mapstyle.json';
@@ -58,7 +59,7 @@ export default class MapScreen extends Component {
   render() {
     const { latLngPhone, region } = this.state;
     if (region.latitude === 0) {
-      return null;
+      return <LoadingScreen backgroundColor='black'/>;
     }
     console.log(latLngPhone, region);
     return (
