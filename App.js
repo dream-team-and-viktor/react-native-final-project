@@ -5,6 +5,7 @@ import HomeScreen from "./components/HomeScreen/HomeScreen";
 import DisplayScreen from "./components/DisplayScreen/DisplayScreen";
 import RelatedImagesScreen from "./components/RelatedImagesScreen/RelatedImagesScreen";
 import ImageDetails from "./components/ImageDetails/ImageDetails"
+import MapScreen from './components/MapScreen/MapScreen';
 
 const RootStack = createStackNavigator(
   {
@@ -22,6 +23,9 @@ const RootStack = createStackNavigator(
     },
     ImageDetails : {
       screen: ImageDetails
+    },
+    MapScreen: {
+      screen: MapScreen
     }
   },
   {

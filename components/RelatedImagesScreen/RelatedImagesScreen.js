@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { FlatList, TouchableNativeFeedback, Image, View, Modal, ActivityIndicator, Alert } from 'react-native';
+import { FlatList, TouchableNativeFeedback, Image, View, Modal, ActivityIndicator, Alert, Dimensions } from 'react-native';
 import RelatedImagesScreenStyle from './RelatedImagesScreenStyle';
 import ImageZoom from 'react-native-image-pan-zoom';
-import Dimensions from 'Dimensions';
+import HomeScreenStyle from '../HomeScreen/HomeScreenStyle';
 
 
 export default class RelatedImagesScreen extends Component {
@@ -13,6 +13,10 @@ export default class RelatedImagesScreen extends Component {
         this.imageList = this.googleViewResult.responses[0].webDetection.visuallySimilarImages
         ? this.googleViewResult.responses[0].webDetection.visuallySimilarImages
         : this.googleViewResult.responses[0].webDetection.partialMatchingImages;
+
+        this.landmarkAnnotations = this.googleViewResult.responses[0].landmarkAnnotations[0]
+        ? this.googleViewResult.responses[0].landmarkAnnotations[0]
+        : null
 
         this.state = {
             googleViewResult: this.googleViewResult,
@@ -30,12 +34,11 @@ export default class RelatedImagesScreen extends Component {
         await this.setState({
             currentImageURI: imageURL
         });
-        // console.log(this.state.currentImageURI)
         this.setModalVisible(true);
     }
 
+
     renderItem = ({item}) => {
-        // console.log(item)
         return(
                 <TouchableNativeFeedback
                     onPress={()=>{
@@ -53,6 +56,14 @@ export default class RelatedImagesScreen extends Component {
                     </View>
                 </TouchableNativeFeedback>
         )
+    }
+
+    goToMapScreen = async () => {
+      const { navigation } = this.props;
+      
+      navigation.navigate("MapScreen", {
+        ...this.landmarkAnnotations.locations[0].latLng
+      })
     }
 
     render() {
@@ -98,6 +109,21 @@ export default class RelatedImagesScreen extends Component {
                     </View>
                 </Modal>
 
+              <TouchableNativeFeedback
+                style={HomeScreenStyle.startButtonWrapper}
+                onPress={this.goToMapScreen}
+              >
+                <View
+                  style={HomeScreenStyle.startButtonWrapper}
+                  elevation={3}
+                >
+                  <Image
+                    style={HomeScreenStyle.startButton}
+                    source={require('../../assets/map_marker.png')}
+                    resizeMode='cover'
+                  />
+                </View>
+              </TouchableNativeFeedback>
                 <FlatList
                     contentContainerStyle={RelatedImagesScreenStyle.RelatedImages}
                     data={this.state.imageList}

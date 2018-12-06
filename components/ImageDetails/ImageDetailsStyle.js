@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import Dimensions from 'Dimensions';
 
-const RelatedImagesScreenStyle = StyleSheet.create({
+const ImageDetails = StyleSheet.create({
   RelatedImagesScreenMainView: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
@@ -52,4 +52,4 @@ const RelatedImagesScreenStyle = StyleSheet.create({
   }
 });
 
-export default RelatedImagesScreenStyle;
+export default ImageDetails;
