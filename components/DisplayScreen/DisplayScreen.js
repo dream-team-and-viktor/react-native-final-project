@@ -36,13 +36,17 @@ export default class DisplayScreen extends Component {
         return (
             <View style={DisplayScreenStyle.container}>
               <ScrollView style={DisplayScreenStyle.containerScroll}>
-                <Subheader
-                  text="Location Details"
-                  style={{
-                    container: {alignSelf: 'flex-start'}
-                  }}
-                />
-
+                {this.state &&
+                  this.state.googleViewResult &&
+                  this.state.googleViewResult.responses &&
+                  this.state.googleViewResult.responses[0].landmarkAnnotations &&
+                  <Subheader
+                    text="Location Details"
+                    style={{
+                      container: {alignSelf: 'flex-start'}
+                    }}
+                  />
+                }
                 <View style={DisplayScreenStyle.relatedImagesCardWrapper}>
                   {this.state &&
                     this.state.googleViewResult &&
@@ -52,12 +56,15 @@ export default class DisplayScreen extends Component {
                   }
                 </View>
 
-                <Subheader
-                  text="Visually Similar Images"
-                  style={{
-                    container: {alignSelf: 'flex-start'}
-                  }}
-                />
+                {this.state &&
+                  this.state.googleViewResult &&
+                  <Subheader
+                    text="Visually Similar Images"
+                    style={{
+                      container: {alignSelf: 'flex-start'}
+                    }}
+                  />
+                }
                 <View style={DisplayScreenStyle.relatedImagesCardWrapper}>
                   <Card>
                     <View style={DisplayScreenStyle.relatedImagesCard}>
