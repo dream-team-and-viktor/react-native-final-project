@@ -1,4 +1,5 @@
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import React from "react";
+import { createStackNavigator } from "react-navigation";
 
 import HomeScreen from "./components/HomeScreen/HomeScreen";
 import DisplayScreen from "./components/DisplayScreen/DisplayScreen";
@@ -27,6 +28,9 @@ const RootStack = createStackNavigator(
     initialRouteName: "Home"
   }
 );
-const AppContainer = createAppContainer(RootStack);
 
-export default AppContainer;
+export default class App extends React.Component {
+  render() {
+    return <RootStack />;
+  }
+}
