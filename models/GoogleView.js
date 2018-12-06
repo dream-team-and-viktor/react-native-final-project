@@ -14,11 +14,11 @@ class GoogleView {
                     features: [
                       {
                         type: "LANDMARK_DETECTION",
-                        maxResults: 5
+                        maxResults: 10
                       },
                       {
                         type: "WEB_DETECTION",
-                        maxResults: 5
+                        maxResults: 10
                       }
                     ]
                   }

@@ -3,16 +3,16 @@ import Dimensions from 'Dimensions';
 
 const RelatedImagesScreenStyle = StyleSheet.create({
   RelatedImagesScreenMainView: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width: undefined,
+    height: undefined,
   },
   RelatedImages: {
     flexDirection: 'column',
   },
   ImageWrapper: {
     padding: 3,
-    width: Dimensions.get('window').width/3,
-    height: Dimensions.get('window').width/3,
+    width: (Dimensions.get('window').width*0.9)/3,
+    height: (Dimensions.get('window').width*0.9)/3,
   },
   ImageThumbnail: {
     width: null,
