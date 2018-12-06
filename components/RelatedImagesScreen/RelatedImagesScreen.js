@@ -2,28 +2,24 @@ import React, { Component } from 'react';
 import { FlatList, TouchableNativeFeedback, Image, View, Modal, ActivityIndicator, Alert, Dimensions } from 'react-native';
 import RelatedImagesScreenStyle from './RelatedImagesScreenStyle';
 import ImageZoom from 'react-native-image-pan-zoom';
-import HomeScreenStyle from '../HomeScreen/HomeScreenStyle';
 
 
 export default class RelatedImagesScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.googleViewResult = this.props.navigation.getParam("result", null)
-        this.imageList = this.googleViewResult.responses[0].webDetection.visuallySimilarImages
-        ? this.googleViewResult.responses[0].webDetection.visuallySimilarImages
-        : this.googleViewResult.responses[0].webDetection.partialMatchingImages;
-
-        this.landmarkAnnotations = this.googleViewResult.responses[0].landmarkAnnotations[0]
-        ? this.googleViewResult.responses[0].landmarkAnnotations[0]
-        : null
 
         this.state = {
-            googleViewResult: this.googleViewResult,
-            imageList: this.googleViewResult.responses[0].webDetection.visuallySimilarImages,
+            imageList: [],
             modalVisible: false,
             currentImageURI: ''
         }
+    }
+
+    componentDidMount() {
+        this.setState({
+            imageList: this.props.imageList
+        })
     }
 
     setModalVisible = (visible) => {
@@ -56,14 +52,6 @@ export default class RelatedImagesScreen extends Component {
                     </View>
                 </TouchableNativeFeedback>
         )
-    }
-
-    goToMapScreen = async () => {
-      const { navigation } = this.props;
-      
-      navigation.navigate("MapScreen", {
-        ...this.landmarkAnnotations.locations[0].latLng
-      })
     }
 
     render() {
@@ -108,22 +96,6 @@ export default class RelatedImagesScreen extends Component {
                         </TouchableNativeFeedback>
                     </View>
                 </Modal>
-
-              <TouchableNativeFeedback
-                style={HomeScreenStyle.startButtonWrapper}
-                onPress={this.goToMapScreen}
-              >
-                <View
-                  style={HomeScreenStyle.startButtonWrapper}
-                  elevation={3}
-                >
-                  <Image
-                    style={HomeScreenStyle.startButton}
-                    source={require('../../assets/map_marker.png')}
-                    resizeMode='cover'
-                  />
-                </View>
-              </TouchableNativeFeedback>
                 <FlatList
                     contentContainerStyle={RelatedImagesScreenStyle.RelatedImages}
                     data={this.state.imageList}

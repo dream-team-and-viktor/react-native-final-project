@@ -18,7 +18,7 @@ export default class ImageDetails extends Component {
 
     constructor(props) {
         super(props);
-        this.googleViewResult = this.props.navigation.getParam("result", null)
+        this.googleViewResult = this.props.googleViewResult
 
         this.imageLabel = this.googleViewResult.responses[0].landmarkAnnotations[0].description;
         this.imageAccuracy = this.googleViewResult.responses[0].landmarkAnnotations[0].score;

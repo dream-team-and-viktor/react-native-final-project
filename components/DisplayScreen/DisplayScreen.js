@@ -1,62 +1,81 @@
-import React, { Component } from "react";
-import { View, Text, Image, SectionList } from "react-native";
+import React, { Component } from 'react';
+import { View, Text, ScrollView, Alert } from 'react-native';
+import DisplayScreenStyle from './DisplayScreenStyle';
+import { Card, Button, ActionButton, Subheader } from 'react-native-material-ui';
+
+import RelatedImagesScreen from '../RelatedImagesScreen/RelatedImagesScreen';
+import ImageDetails from '../ImageDetails/ImageDetails';
+
 
 export default class DisplayScreen extends Component {
-  constructor(props) {
-    super(props);
-    const theResponse = this.props.navigation.getParam("result", null);
-    const slots = theResponse.responses[0].webDetection;
-    this.state = {
-      slots,
-      similarImages: []
-    };
-  }
 
-  componentWillMount() {
-    this.getVisuallySimilarImages();
-    // console.log();
-    // console.log(this.state.similarImages);
-  }
-
-  getVisuallySimilarImages = () => {
-    const { slots, similarImages } = this.state;
-    const similarImgArr = {
-      title: "Visually Similar Images",
-      data: []
-    };
-
-    for (let i = 0; i < slots.visuallySimilarImages.length; i += 1) {
-      const similarImageUri = slots.visuallySimilarImages[i].url;
-      similarImgArr.data.push(similarImageUri);
+    constructor(props) {
+        super(props);
+        this.state = {
+          googleViewResult: null
+        }
     }
-    similarImages.push(similarImgArr);
 
-    this.setState({
-      similarImages
-    });
-  };
+    componentDidMount() {
+      this.setState({
+        googleViewResult: this.props.navigation.getParam("result", null)
+      })
+    }
 
-  render() {
-    const { imageMatch, similarImages } = this.state;
-    return (
-      <View style={{ flex: 1 }}>
-        <Text> Hello </Text>
-        <SectionList
-          style={{ flex: 1 }}
-          sections={similarImages}
-          renderItem={({ item, index, section }) => (
-            <Image
-              style={{ flex: 1, width: 75, height: 75 }}
-              source={{ uri: item }}
-              key={index.toString()}
-            />
-          )}
-          renderSectionHeader={({ section: { title } }) => (
-            <Text style={{ fontWeight: "bold" }}>{title}</Text>
-          )}
-          keyExtractor={(item, index) => item + index}
-        />
-      </View>
-    );
-  }
+    goToMapScreen = () => {
+      if (this.state.googleViewResult.responses[0].landmarkAnnotations) {
+        this.props.navigation.navigate("MapScreen", {
+          ...this.state.googleViewResult.responses[0].landmarkAnnotations[0].locations[0].latLng
+        })
+      } else {
+        Alert.alert('Landmark not found')
+      }
+    }
+
+    render() {
+        return (
+            <View style={DisplayScreenStyle.container}>
+              <ScrollView style={DisplayScreenStyle.containerScroll}>
+                <Subheader
+                  text="Location Details"
+                  style={{
+                    container: {alignSelf: 'flex-start'}
+                  }}
+                />
+
+                <View style={DisplayScreenStyle.relatedImagesCardWrapper}>
+                  {this.state &&
+                    this.state.googleViewResult &&
+                    this.state.googleViewResult.responses &&
+                    this.state.googleViewResult.responses[0].landmarkAnnotations &&
+                    <ImageDetails googleViewResult={this.state.googleViewResult} />
+                  }
+                </View>
+
+                <Subheader
+                  text="Visually Similar Images"
+                  style={{
+                    container: {alignSelf: 'flex-start'}
+                  }}
+                />
+                <View style={DisplayScreenStyle.relatedImagesCardWrapper}>
+                  <Card>
+                    <View style={DisplayScreenStyle.relatedImagesCard}>
+                      {this.state &&
+                        this.state.googleViewResult &&
+                        <RelatedImagesScreen imageList={this.state.googleViewResult.responses[0].webDetection.visuallySimilarImages} />
+                      }
+                    </View>
+                  </Card>
+                </View>
+              </ScrollView>
+              <View style={DisplayScreenStyle.MapButtonWrapper}>
+                <ActionButton
+                  icon="map"
+                  onPress={this.goToMapScreen}
+                />
+              </View>
+            </View>
+        )
+    }
 }

@@ -39,11 +39,11 @@ export default class HomeScreen extends React.Component {
       })
       googleView.fetchGoogleViewData(this.state.currentImage.imageBase64)
       .then((result) => {
-        // console.log(result)
+        console.log(result)
         this.setState({
           loading: false
         }, () => {
-          this.props.navigation.navigate("ImageDetails", {
+          this.props.navigation.navigate("Display", {
             result
           });
         })
@@ -51,16 +51,6 @@ export default class HomeScreen extends React.Component {
     }
   };
 
-  goToMapScreen = async () => {
-    const { navigation } = this.props;
-    const { location, locationName, regionPhone, regionPicture } = this.state;
-    navigation.navigate("MapScreen", {
-      location,
-      locationName,
-      regionPhone,
-      regionPicture
-    })
-  }
 
   takeImage = async () => {
     let { cancelled, uri, base64 } = await ImagePicker.launchCameraAsync({
