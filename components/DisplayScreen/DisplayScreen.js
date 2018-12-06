@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Alert } from 'react-native';
 import DisplayScreenStyle from './DisplayScreenStyle';
 import { Card, Button, ActionButton, Subheader } from 'react-native-material-ui';
 
@@ -23,9 +23,13 @@ export default class DisplayScreen extends Component {
     }
 
     goToMapScreen = () => {
-      this.props.navigation.navigate("MapScreen", {
-        ...this.state.googleViewResult.responses[0].landmarkAnnotations[0].locations[0].latLng
-      })
+      if (this.state.googleViewResult.responses[0].landmarkAnnotations) {
+        this.props.navigation.navigate("MapScreen", {
+          ...this.state.googleViewResult.responses[0].landmarkAnnotations[0].locations[0].latLng
+        })
+      } else {
+        Alert.alert('Landmark not found')
+      }
     }
 
     render() {
@@ -42,6 +46,8 @@ export default class DisplayScreen extends Component {
                 <View style={DisplayScreenStyle.relatedImagesCardWrapper}>
                   {this.state &&
                     this.state.googleViewResult &&
+                    this.state.googleViewResult.responses &&
+                    this.state.googleViewResult.responses[0].landmarkAnnotations &&
                     <ImageDetails googleViewResult={this.state.googleViewResult} />
                   }
                 </View>

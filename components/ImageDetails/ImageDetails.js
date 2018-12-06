@@ -3,7 +3,10 @@ import { FlatList, TouchableNativeFeedback, Image, View, Modal, TouchableOpacity
 import GooglePlaceID from "../../models/GooglePlaceId";
 import GooglePlaces from "../../models/GooglePlaces";
 import WikiDescription from "../../models/WikiDescription"
-import ImageDetailsStyle from './ImageDetailsStyle';
+import ImageDetailsStyleScreen from './ImageDetailsScreenStyle';
+import { Card } from 'react-native-material-ui';
+import Stars from 'react-native-stars';
+
 
 
 
@@ -65,34 +68,54 @@ export default class ImageDetails extends Component {
 
     render() {
         return (
-            <View >
+            <View style={{flex:1}}>
                 <View>
-                    <Text>{this.state.imageLabel}</Text>
-                </View>
-                <View>
-                    <Text>{this.state.imageAccuracy}</Text>
-                </View>
-                <View>
-                    <ScrollView>
-                        <Text>{this.state.currentWikiPageDescription}</Text>
-                    </ScrollView>
-                </View>
-            <FlatList
-                data={this.state.placeReview}
-                keyExtractor={(x, i) => i.toString()}
-                renderItem={({item}) => 
-                <View style={{flex:1}}>
-                <Text>{item.rating}</Text>
-                <Text>{item.author_name}</Text>
-                <Text>{item.text}</Text>
-                </View>
-                }
-                />
+                    
+                    <Card>
+                        <View style={ImageDetailsStyleScreen.WikiDescriptionView}>
+                        <Text style={ImageDetailsStyleScreen.WikiTitle}>Wikipedia description</Text>
 
+                            <View style={ImageDetailsStyleScreen.wikiText}>
+                            <Text>{this.state.currentWikiPageDescription}</Text>
+                            </View>
+                        </View>
+                    </Card>
+                </View>
+                <View >
+                <Text style={ImageDetailsStyleScreen.WikiTitle}>Google Reviews</Text>
+                </View>
+                    <FlatList
+                        data={this.state.placeReview}
+                        keyExtractor={(x, i) => i.toString()}
+                        renderItem={({item}) => 
+                    <View style={ImageDetailsStyleScreen.googlePlaceFlatList}>
 
-            </View>
-            
-            
+                        <Card>
+                            <View style={ImageDetailsStyleScreen.googlePlaceInfoView}>
+                                <View style={ImageDetailsStyleScreen.starsStyling}>
+                                    <Stars
+                                        spacing={8}
+                                        count={5}
+                                        default={item.rating}
+                                        half={true}
+                                        starSize={14}
+                                        backingColor='transparent'
+                                        fullStar= {require('../../assets/starFilled.png')}
+                                        emptyStar= {require('../../assets/starEmpty.png')}
+                                        halfStar= {require('../../assets/starHalf.png')}
+                                        />
+                                </View>
+                                <View style={ImageDetailsStyleScreen.AuthorText}>
+                                <Text>{item.author_name}</Text>
+                                <Text>{item.text}</Text>
+                                </View>
+                                </View>
+                            </Card>
+                        </View>}
+                        />
+
+                </View>
+             
         )
     }
 }

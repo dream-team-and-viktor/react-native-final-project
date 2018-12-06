@@ -11,8 +11,8 @@ const RelatedImagesScreenStyle = StyleSheet.create({
   },
   ImageWrapper: {
     padding: 3,
-    width: (Dimensions.get('window').width*0.9)/3,
-    height: (Dimensions.get('window').width*0.9)/3,
+    width: (Dimensions.get('window').width*0.95)/3,
+    height: (Dimensions.get('window').width*0.95)/3,
   },
   ImageThumbnail: {
     width: null,
