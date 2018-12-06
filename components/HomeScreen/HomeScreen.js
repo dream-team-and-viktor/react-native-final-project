@@ -43,7 +43,7 @@ export default class HomeScreen extends React.Component {
         this.setState({
           loading: false
         }, () => {
-          this.props.navigation.navigate("RelatedImages", {
+          this.props.navigation.navigate("ImageDetails", {
             result
           });
         })

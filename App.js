@@ -4,6 +4,7 @@ import { createStackNavigator } from "react-navigation";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
 import DisplayScreen from "./components/DisplayScreen/DisplayScreen";
 import RelatedImagesScreen from "./components/RelatedImagesScreen/RelatedImagesScreen";
+import ImageDetails from "./components/ImageDetails/ImageDetails"
 import MapScreen from './components/MapScreen/MapScreen';
 
 const RootStack = createStackNavigator(
@@ -19,6 +20,9 @@ const RootStack = createStackNavigator(
     },
     RelatedImages: {
       screen: RelatedImagesScreen
+    },
+    ImageDetails : {
+      screen: ImageDetails
     },
     MapScreen: {
       screen: MapScreen
