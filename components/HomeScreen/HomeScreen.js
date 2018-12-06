@@ -29,11 +29,9 @@ export default class HomeScreen extends React.Component {
   fetchGoogleViewData = async () => {
     let googleView = new GoogleView();
     if (this.state.currentImage.imageBase64) {
-      console.log(this.state.currentImage.base64)
       googleView.fetchGoogleViewData(this.state.currentImage.imageBase64)
       .then((result) => {
-        console.log(result)
-        this.props.navigation.navigate("RelatedImages", {
+        this.props.navigation.navigate("ImageDetails", {
           result
         });
       })

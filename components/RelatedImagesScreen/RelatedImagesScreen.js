@@ -30,12 +30,12 @@ export default class RelatedImagesScreen extends Component {
         await this.setState({
             currentImageURI: imageURL
         });
-        console.log(this.state.currentImageURI)
+        // console.log(this.state.currentImageURI)
         this.setModalVisible(true);
     }
 
     renderItem = ({item}) => {
-        console.log(item)
+        // console.log(item)
         return(
                 <TouchableNativeFeedback
                     onPress={()=>{
